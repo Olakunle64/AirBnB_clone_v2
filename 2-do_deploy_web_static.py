@@ -39,14 +39,15 @@ def do_deploy(archive_path):
         return False
     put(archive_path, "/tmp/")
     archive_name = os.path.basename(archive_path)
-    arch_filename = os.path.splitext(archive_name)[0]
+    # arch_f is the original archive file name
+    arch_f = os.path.splitext(archive_name)[0]
     arch_path = f'/tmp/{archive_name}'
-    run(f'mkdir -p /data/web_static/releases/{arch_filename}')
+    run(f'mkdir -p /data/web_static/releases/{arch_f}')
     cmd = 'tar -xzf {} -C /data/web_static/releases/{} --strip-components=1'
-    run(cmd.format(arch_path, arch_filename))
+    run(cmd.format(arch_path, arch_f))
     run(f'rm {arch_path}')
-    run('rm -f /data/web_static/current')
-    s = f'ln -s /data/web_static/releases/{arch_filename} /data/web_static/current'
+    run(f'rm -rf /data/web_static/current')
+    s = f'ln -sf /data/web_static/releases/{arch_f} /data/web_static/current'
     run(s)
     print('New version deployed!')
     return True
