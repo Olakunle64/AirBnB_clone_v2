@@ -6,6 +6,9 @@
         /hbnb: display "HBNB"
         /c/<text>: display "C " followed by the value of the text variable
                     (replace underscore _ symbols with a space )
+        /python/<text>: display "Python ", followed by the value of the
+                        text variable (replace underscore _ symbols with
+                        a space )
 
     The web application is listening on 0.0.0.0, port 5000
     """
@@ -32,6 +35,14 @@ def display_c(text):
     """display C followed by the content of <text>"""
     new_text = str(text).replace("_", " ")
     return f'C {new_text}'
+
+
+@app.route("/python/", defaults={'text': 'is cool'})
+@app.route("/python/<text>", strict_slashes=False)
+def display_python(text):
+    """display Python followed by the content of <text>"""
+    new_text = str(text).replace("_", " ")
+    return f'Python {new_text}'
 
 
 if __name__ == "__main__":
