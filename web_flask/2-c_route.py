@@ -10,7 +10,7 @@
     The web application is listening on 0.0.0.0, port 5000
     """
 
-from markupsafe import escape
+
 from flask import Flask
 app = Flask(__name__)
 
@@ -31,7 +31,7 @@ def display_hbnb():
 def display_c(text):
     """display C followed by the content of <text>"""
     new_text = text.replace("_", " ")
-    return f'C {escape(text)}'
+    return f'C {text}'
 
 
 if __name__ == "__main__":
