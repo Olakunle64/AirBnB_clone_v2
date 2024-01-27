@@ -30,8 +30,8 @@ def display_hbnb():
 @app.route("/c/<text>", strict_slashes=False)
 def display_c(text):
     """display C followed by the content of <text>"""
-    new_text = text.replace("_", " ")
-    return f'C {text}'
+    new_text =  str(text).replace("_", " ")
+    return f'C {new_text}'
 
 
 if __name__ == "__main__":
