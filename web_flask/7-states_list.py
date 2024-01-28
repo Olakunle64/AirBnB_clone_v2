@@ -19,7 +19,7 @@
     """
 from flask import Flask, render_template
 from models import storage
-app = Flask("__name__")
+app = Flask(__name__)
 
 
 @app.teardown_appcontext
