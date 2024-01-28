@@ -23,6 +23,7 @@
 
 from flask import Flask, render_template
 from models import storage
+from models.state import State
 app = Flask(__name__)
 
 
@@ -36,8 +37,7 @@ def close_session(exception):
 def all_state():
     """list of all State objects present in
     DBStorage sorted by name (A->Z)"""
-    state_list = sorted(storage.all("State").values(), key=lambda x: x.name)
-    # state_list = storage.all("State")
+    state_list = sorted(storage.all(State).values(), key=lambda x: x.name)
     return render_template("8-cities_by_states.html", state_list=state_list)
 
 
